@@ -1,15 +1,13 @@
 {
   "name": "microbit-python",
   "main": "./lib/microbit-python",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A package to compile python code for the MicroBit",
-  "keywords": [
-  ],
+  "keywords": [],
   "repository": "https://github.com/giannie/atom-microbit-python",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
