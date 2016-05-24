@@ -16,6 +16,7 @@ module.exports = MicrobitPython =
 
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'microbit-python:compile': => @compile()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'microbit-python:flash': => @flash()
 
   deactivate: ->
     @subscriptions.dispose()
@@ -25,6 +26,19 @@ module.exports = MicrobitPython =
     fpath = editor.getPath()
     dpath = path.dirname(fpath)
     cmd = spawn('uflash', [fpath, dpath])
+    result = ''
+    cmd.stdout.on('data', (data) ->
+      result += data.toString()
+      )
+    nm = @notificationManager
+    cmd.on('close', (code) ->
+      nm.addInfo(result)
+      )
+
+  flash: ->
+    editor = atom.workspace.getActiveTextEditor()
+    fpath = editor.getPath()
+    cmd = spawn('uflash', [fpath])
     result = ''
     cmd.stdout.on('data', (data) ->
       result += data.toString()
