@@ -5,7 +5,7 @@
   "description": "A package to compile python code for the MicroBit",
   "keywords": [
   ],
-  "repository": "https://github.com/giannie/microbit-python",
+  "repository": "https://github.com/giannie/atom-microbit-python",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
