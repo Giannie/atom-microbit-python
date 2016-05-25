@@ -34,10 +34,6 @@ module.exports = MicrobitPython =
       result += data.toString()
       )
     nm = @notificationManager
-    nm.addInfo(@pythonpath)
-    nm.addInfo(@scriptpath)
-    nm.addInfo(fpath)
-    nm.addInfo(dpath)
     cmd.on('close', (code) ->
       nm.addInfo(result)
       )
