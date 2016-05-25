@@ -1,7 +1,7 @@
 {
   "name": "microbit-python",
   "main": "./lib/microbit-python",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A package to compile python code for the MicroBit",
   "keywords": [],
   "repository": "https://github.com/giannie/atom-microbit-python",
