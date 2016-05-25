@@ -6,6 +6,11 @@ module.exports = MicrobitPython =
   microbitPythonView: null
   modalPanel: null
   subscriptions: null
+  config:
+    pythonpath:
+      title: "Path to python executable"
+      type: "string"
+      default: "python"
 
   activate: (state) ->
 
@@ -18,7 +23,7 @@ module.exports = MicrobitPython =
     @subscriptions.add atom.commands.add 'atom-workspace', 'microbit-python:compile': => @compile()
     @subscriptions.add atom.commands.add 'atom-workspace', 'microbit-python:flash': => @flash()
 
-    @pythonpath = 'python'
+    @pythonpath = atom.config.get('microbit-python.pythonpath')
     @scriptpath = __dirname + '/microbit-python.py'
 
   deactivate: ->
