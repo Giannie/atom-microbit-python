@@ -18,6 +18,9 @@ module.exports = MicrobitPython =
     @subscriptions.add atom.commands.add 'atom-workspace', 'microbit-python:compile': => @compile()
     @subscriptions.add atom.commands.add 'atom-workspace', 'microbit-python:flash': => @flash()
 
+    @pythonpath = 'python'
+    @scriptpath = __dirname + '/microbit-python.py'
+
   deactivate: ->
     @subscriptions.dispose()
 
@@ -25,12 +28,16 @@ module.exports = MicrobitPython =
     editor = atom.workspace.getActiveTextEditor()
     fpath = editor.getPath()
     dpath = path.dirname(fpath)
-    cmd = spawn('uflash', [fpath, dpath])
+    cmd = spawn(@pythonpath, [@scriptpath, fpath, dpath])
     result = ''
     cmd.stdout.on('data', (data) ->
       result += data.toString()
       )
     nm = @notificationManager
+    nm.addInfo(@pythonpath)
+    nm.addInfo(@scriptpath)
+    nm.addInfo(fpath)
+    nm.addInfo(dpath)
     cmd.on('close', (code) ->
       nm.addInfo(result)
       )
@@ -38,7 +45,7 @@ module.exports = MicrobitPython =
   flash: ->
     editor = atom.workspace.getActiveTextEditor()
     fpath = editor.getPath()
-    cmd = spawn('uflash', [fpath])
+    cmd = spawn(@pythonpath, [@scriptpath, fpath])
     result = ''
     cmd.stdout.on('data', (data) ->
       result += data.toString()
